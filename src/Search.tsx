@@ -21,7 +21,11 @@ const getMovies = async (query: string, cb: any) => {
   cb(results.data.results);
 };
 
-const Search = ({ title }) => {
+interface SearchProps {
+  title: string;
+}
+
+const Search: React.FC<SearchProps> = ({ title }) => {
   const [query, setQuery] = React.useState("");
   const [movies, setMovies] = React.useState([]);
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -31,6 +35,18 @@ const Search = ({ title }) => {
 
   return (
     <Grommet full theme={grommet}>
+      <p>
+        <i>
+          All data is provided by&nbsp;
+          <a
+            href="https://www.themoviedb.org/documentation/api"
+            target="
+        __blank"
+          >
+            TMBD
+          </a>
+        </i>
+      </p>
       <Box background="light-1" direction="row" height="100%">
         <Grid
           fill
