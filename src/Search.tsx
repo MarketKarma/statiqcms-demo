@@ -13,7 +13,6 @@ import { grommet } from "grommet/themes";
 import React, { ChangeEvent } from "react";
 
 const getMovies = async (query: string, cb: any) => {
-  console.log(query);
   const results = await axios.get(
     `https://api.themoviedb.org/3/search/movie?api_key=8f04f55cb668f5fe095af040343f9960&query=${encodeURIComponent(
       query
@@ -22,7 +21,7 @@ const getMovies = async (query: string, cb: any) => {
   cb(results.data.results);
 };
 
-const Search = () => {
+const Search = ({ title }) => {
   const [query, setQuery] = React.useState("");
   const [movies, setMovies] = React.useState([]);
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -48,7 +47,7 @@ const Search = () => {
             gridArea="title"
             pad={{ horizontal: "medium", vertical: "small" }}
           >
-            <Heading margin="none">Movie DB</Heading>
+            <Heading margin="none">{title}</Heading>
           </Box>
           <Box
             gridArea="query"
